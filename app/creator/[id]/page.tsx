@@ -67,7 +67,7 @@ export default function CreatorPage({ params }: { params: { id: string } }) {
                   <div className="flex items-center gap-4 mb-4">
                     <div className="flex items-center gap-2">
                       <Users className="h-4 w-4" />
-                      <span>{creator.patrons.toLocaleString()} patrons</span>
+                      <span>{creator.patrons.toLocaleString()} Supporters</span>
                     </div>
                   </div>
                   <p className="text-muted-foreground">
