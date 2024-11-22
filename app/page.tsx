@@ -3,33 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, Heart, Users, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-const featuredCreators = [
-  {
-    id: 1,
-    name: "Sarah Chen",
-    category: "Digital Art",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop",
-    patrons: 1234,
-    description: "Creating vibrant digital art and teaching techniques",
-  },
-  {
-    id: 2,
-    name: "Mark Reynolds",
-    category: "Music Production",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop",
-    patrons: 856,
-    description: "Producing original music and educational content",
-  },
-  {
-    id: 3,
-    name: "Elena Martinez",
-    category: "Photography",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&h=400&auto=format&fit=crop",
-    patrons: 2341,
-    description: "Sharing photography tips and behind-the-scenes content",
-  },
-];
+import { creators } from "./creators.json";
 
 export default function Home() {
   return (
@@ -51,7 +25,7 @@ export default function Home() {
             </Link>
             <Link href="/signup">
               <Button size="lg" variant="outline">
-                Become a Creator
+                Get On The Allow list
               </Button>
             </Link>
           </div>
@@ -62,7 +36,7 @@ export default function Home() {
       <section className="py-20 bg-muted/50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Why CreatorSpace?
+            Melobanc Labs?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="p-6">
@@ -97,7 +71,7 @@ export default function Home() {
             Featured Creators
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {featuredCreators.map((creator) => (
+            {creators.map((creator) => (
               <Card key={creator.id} className="overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
@@ -115,7 +89,7 @@ export default function Home() {
                   <p className="mb-4">{creator.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">
-                      {creator.patrons.toLocaleString()} patrons
+                      {creator.patrons.toLocaleString()} Supporters
                     </span>
                     <Link href={`/creator/${creator.id}`}>
                       <Button variant="secondary">View Page</Button>

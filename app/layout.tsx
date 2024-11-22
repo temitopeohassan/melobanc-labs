@@ -3,9 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Navbar from '@/components/navbar';
-import OnchainProviders from './OnchainProviders';
 import { Toaster } from '@/components/ui/toaster';
-import { ReactNode } from 'react'; // Import ReactNode
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,15 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>
-        <OnchainProviders>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main>{children}</main>
           <Toaster />
         </ThemeProvider>
-        </OnchainProviders>
       </body>
     </html>
   );

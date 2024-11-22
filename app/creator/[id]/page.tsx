@@ -10,57 +10,28 @@ import {
 } from "@/components/ui/tabs";
 import { Heart, Share2, Users } from "lucide-react";
 import Image from "next/image";
+import { creators } from "../../creators.json";
 
-const mockCreator = {
-  id: 1,
-  name: "Sarah Chen",
-  category: "Digital Art",
-  image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop",
-  cover: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1200&auto=format&fit=crop",
-  patrons: 1234,
-  description: "Hi! I'm Sarah, a digital artist creating vibrant artwork and teaching techniques. Join my community to get access to exclusive tutorials, work-in-progress content, and join live drawing sessions!",
-  tiers: [
-    {
-      id: 1,
-      name: "Fan",
-      price: 5,
-      benefits: [
-        "Access to patron-only posts",
-        "Behind-the-scenes content",
-        "Early access to artworks",
-      ],
-    },
-    {
-      id: 2,
-      name: "Supporter",
-      price: 10,
-      benefits: [
-        "All previous rewards",
-        "Monthly digital wallpapers",
-        "Vote on future projects",
-      ],
-    },
-    {
-      id: 3,
-      name: "VIP",
-      price: 25,
-      benefits: [
-        "All previous rewards",
-        "Monthly live drawing sessions",
-        "Personal art feedback",
-        "Access to tutorial library",
-      ],
-    },
-  ],
-};
+// Add this function before your default export
+export function generateStaticParams() {
+  return creators.map((creator) => ({
+    id: creator.id.toString(),
+  }));
+}
 
-export default function CreatorPage() {
+export default function CreatorPage({ params }: { params: { id: string } }) {
+  const creator = creators.find(c => c.id === parseInt(params.id));
+
+  if (!creator) {
+    return <div>Creator not found</div>;
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Cover Image */}
       <div className="h-64 relative">
         <Image
-          src={mockCreator.cover}
+          src={creator.cover}
           alt="Cover"
           fill
           className="object-cover"
@@ -75,8 +46,8 @@ export default function CreatorPage() {
             <Card className="p-6">
               <div className="flex items-start gap-6">
                 <Image
-                  src={mockCreator.image}
-                  alt={mockCreator.name}
+                  src={creator.image}
+                  alt={creator.name}
                   width={120}
                   height={120}
                   className="rounded-full"
@@ -85,10 +56,10 @@ export default function CreatorPage() {
                   <div className="flex justify-between items-start">
                     <div>
                       <h1 className="text-3xl font-bold mb-2">
-                        {mockCreator.name}
+                          {creator.name}
                       </h1>
                       <p className="text-muted-foreground mb-4">
-                        {mockCreator.category}
+                        {creator.category}
                       </p>
                     </div>
                     <div className="flex gap-2">
@@ -103,11 +74,11 @@ export default function CreatorPage() {
                   <div className="flex items-center gap-4 mb-4">
                     <div className="flex items-center gap-2">
                       <Users className="h-4 w-4" />
-                      <span>{mockCreator.patrons.toLocaleString()} patrons</span>
+                      <span>{creator.patrons.toLocaleString()} patrons</span>
                     </div>
                   </div>
                   <p className="text-muted-foreground">
-                    {mockCreator.description}
+                    {creator.description}
                   </p>
                 </div>
               </div>
@@ -143,7 +114,7 @@ export default function CreatorPage() {
           {/* Tiers */}
           <div className="md:w-1/3">
             <div className="space-y-6">
-              {mockCreator.tiers.map((tier) => (
+                {creator.tiers.map((tier) => (
                 <Card key={tier.id} className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{tier.name}</h3>
                   <p className="text-2xl font-bold mb-4">
