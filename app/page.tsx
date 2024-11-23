@@ -18,12 +18,14 @@ export default function Home() {
             Join millions of others in supporting creators and getting exclusive access to their work
           </p>
           <div className="flex justify-center gap-4">
-            <Link href="/explore">
+            <Link href="/#">
               <Button size="lg" className="gap-2">
                 Explore Creators <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
-            <Link href="/signup">
+            <Link href="https://app.deform.cc/form/87f4da6d-3427-40d5-9cbf-db9a76b10ef6/?page_number=0" 
+          target="_blank" 
+          rel="noopener noreferrer">
               <Button size="lg" variant="outline">
                 Get On The Allow list
               </Button>

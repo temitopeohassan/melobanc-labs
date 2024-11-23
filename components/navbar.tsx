@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Menu } from "lucide-react";
 import {
@@ -30,6 +31,11 @@ import {
 
 export default function Navbar() {
   const { theme } = useTheme();
+  const router = useRouter();
+
+  const handleConnect = () => {
+    router.push('/allowlist');
+  };
 
   return (
     <nav className="border-b">
@@ -47,10 +53,10 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4 flex-1">
           <nav className="flex items-center space-x-4 mx-6">
-            <Link href="/explore" className="text-sm font-medium">
+            <Link href="/#" className="text-sm font-medium">
               Explore
             </Link>
-            <Link href="/creators" className="text-sm font-medium">
+            <Link href="/#" className="text-sm font-medium">
               For Creators
             </Link>
           </nav>
@@ -58,7 +64,10 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center space-x-4">
           <Wallet>
-            <ConnectWallet className="bg-foreground text-background hover:bg-foreground/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2">
+            <ConnectWallet 
+              onConnect={handleConnect}
+              className="bg-foreground text-background hover:bg-foreground/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
+            >
               <Avatar className="h-6 w-6" />
               <Name />
             </ConnectWallet>
@@ -107,7 +116,10 @@ export default function Navbar() {
                 </Link>
                 <div className="pt-4">
                   <Wallet>
-                    <ConnectWallet className="bg-foreground text-background hover:bg-foreground/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full">
+                    <ConnectWallet 
+                      onConnect={handleConnect}
+                      className="bg-foreground text-background hover:bg-foreground/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full"
+                    >
                       <Avatar className="h-6 w-6" />
                       <Name />
                     </ConnectWallet>
