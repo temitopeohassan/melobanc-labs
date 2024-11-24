@@ -20,7 +20,7 @@
             "name": "Fan",
             "price": 5,
             "benefits": [
-              "Access to patron-only posts",
+              "Access to supporters-only posts",
               "Behind-the-scenes content",
               "Early access to artworks"
             ]
@@ -68,7 +68,7 @@
           "name": "Fan",
           "price": 5,
           "benefits": [
-            "Access to patron-only posts",
+            "Access to supporters-only posts",
             "Behind-the-scenes content",
             "Early access to artworks"
           ]
@@ -115,7 +115,7 @@
           "name": "Fan",
           "price": 5,
           "benefits": [
-            "Access to patron-only posts",
+            "Access to supporters-only posts",
             "Behind-the-scenes content",
             "Early access to artworks"
           ]

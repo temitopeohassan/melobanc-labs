@@ -56,7 +56,7 @@ export default function CreatorPageClient({ creator }: { creator: Creator }) {
       setIsLoading(tier.id);
       const amount = parseUnits(tier.price.toString(), 6);
       
-      await writeContract({
+      const result = await writeContract({
         ...USDC_CONTRACT,
         functionName: 'transfer',
         args: [creator.walletAddress as `0x${string}`, amount]
