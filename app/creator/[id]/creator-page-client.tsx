@@ -16,6 +16,7 @@ import {
 import { Heart, Share2, Users } from "lucide-react";
 import Image from "next/image";
 import type { Creator } from "@/app/types/creator";
+import Link from "next/link";
 
 export default function CreatorPageClient({ creator }: { creator: Creator }) {
   const { address, isConnected } = useAccount();
@@ -89,12 +90,65 @@ export default function CreatorPageClient({ creator }: { creator: Creator }) {
           {/* Profile Info */}
           <div className="md:w-2/3">
             <Card className="p-6">
-              {/* ... rest of your existing JSX ... */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative w-24 h-24">
+                  <Image
+                    src={`/${creator.image}`}
+                    alt={creator.name}
+                    fill
+                    className="object-cover rounded-full"
+                  />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold">{creator.name}</h1>
+                  <p className="text-muted-foreground">{creator.category}</p>
+                  <div className="flex items-center gap-4 mt-2">
+                    <span className="flex items-center gap-1">
+                      <Users className="w-4 h-4" />
+                      {creator.patrons} supporters
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p className="mb-6">{creator.description}</p>
+              <div className="flex gap-4">
+                <ul>
+                    <li>{creator.twitter && (
+                  <Link href={creator.twitter} target="_blank" rel="noopener noreferrer">
+                  {creator.twitter}
+                  </Link>
+                    )}</li>
+                    <li>{creator.instagram && (
+                      <Link href={creator.instagram} target="_blank" rel="noopener noreferrer">
+                        {creator.instagram}
+                      </Link>
+                    )}</li>
+                    <li>{creator.website && (
+                      <Link href={creator.website} target="_blank" rel="noopener noreferrer">
+                        {creator.website}
+                      </Link>
+                    )}</li>
+                </ul>
+              </div>
             </Card>
 
             {/* Content Tabs */}
-            <Tabs defaultValue="posts" className="mt-8">
-              {/* ... rest of your existing tabs JSX ... */}
+            <Tabs defaultValue="about" className="mt-8">
+              <TabsList>
+                <TabsTrigger value="about">About</TabsTrigger>
+                <TabsTrigger value="posts">Posts</TabsTrigger>
+              </TabsList>
+              <TabsContent value="about" className="mt-4">
+                <Card className="p-6">
+                  <h3 className="text-xl font-semibold mb-4">About {creator.name}</h3>
+                  <p>{creator.description}</p>
+                </Card>
+              </TabsContent>
+              <TabsContent value="posts" className="mt-4">
+                <Card className="p-6">
+                  <p className="text-muted-foreground">No posts yet.</p>
+                </Card>
+              </TabsContent>
             </Tabs>
           </div>
 
