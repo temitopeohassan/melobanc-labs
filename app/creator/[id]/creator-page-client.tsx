@@ -19,58 +19,64 @@ import type { Creator } from "@/app/types/creator";
 import Link from "next/link";
 
 export default function CreatorPageClient({ creator }: { creator: Creator }) {
-  const { address, isConnected } = useAccount();
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState<number | null>(null);
+    const { address, isConnected } = useAccount();
+    const { toast } = useToast();
+    const [isLoading, setIsLoading] = useState<number | null>(null);
+  
+    const { 
+      writeContract,
+      data: hash,
+      isPending 
+    } = useWriteContract();
+  
+    useWatchContractEvent({
+      address: USDC_CONTRACT.address as `0x${string}`,
+      abi: USDC_CONTRACT.abi,
+      eventName: 'Transfer',
+      onLogs(logs) {
+        toast({
+          title: "Payment Successful!",
+          description: "You are now supporting this creator!",
+        });
+        setIsLoading(null);
+      },
+    });
+  
+    const handleSupport = async (tier: NonNullable<Creator['tiers']>[number]) => {
+      if (!isConnected) {
+        toast({
+          title: "Connect Wallet",
+          description: "Please connect your wallet to support this creator",
+          variant: "destructive",
+        });
+        return;
+      }
+  
+      try {
+        setIsLoading(tier.id);
+        const amount = parseUnits(tier.price.toString(), 6);
+        
+        const result = await writeContract({
+          address: USDC_CONTRACT.address as `0x${string}`,
+          abi: USDC_CONTRACT.abi,
+          functionName: 'transfer',
+          args: [creator.walletAddress as `0x${string}`, amount]
+        });
 
-  const { 
-    writeContract,
-    data: hash,
-    isPending 
-  } = useWriteContract();
+        console.log('Transaction result:', result);
 
-  useWatchContractEvent({
-    address: USDC_CONTRACT.address as `0x${string}`,
-    abi: USDC_CONTRACT.abi,
-    eventName: 'Transfer',
-    onLogs(logs) {
-      toast({
-        title: "Payment Successful!",
-        description: "You are now supporting this creator!",
-      });
-      setIsLoading(null);
-    },
-  });
-
-  const handleSupport = async (tier: NonNullable<Creator['tiers']>[number]) => {
-    if (!isConnected) {
-      toast({
-        title: "Connect Wallet",
-        description: "Please connect your wallet to support this creator",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    try {
-      setIsLoading(tier.id);
-      const amount = parseUnits(tier.price.toString(), 6);
-      
-      const result = await writeContract({
-        ...USDC_CONTRACT,
-        functionName: 'transfer',
-        args: [creator.walletAddress as `0x${string}`, amount]
-      });
-    } catch (error) {
-      console.error('Transaction error:', error);
-      toast({
-        title: "Error",
-        description: "Failed to process payment",
-        variant: "destructive",
-      });
-      setIsLoading(null);
-    }
-  };
+      } catch (error) {
+        console.error('Transaction error:', error);
+        toast({
+          title: "Error",
+          description: typeof error === 'object' && error !== null && 'message' in error 
+            ? (error.message as string)
+            : "Failed to process payment",
+          variant: "destructive",
+        });
+        setIsLoading(null);
+      }
+    };
 
   return (
     <div className="flex flex-col min-h-screen">
