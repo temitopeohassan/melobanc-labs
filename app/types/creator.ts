@@ -10,6 +10,7 @@ export interface Creator {
   facebook?: string;
   instagram?: string;
   website?: string;
+  walletAddress: string;
   tiers?: {
     id: number;
     name: string;

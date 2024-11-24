@@ -12,6 +12,7 @@
         "instagram": "https://instagram.com/Olivateazzy",
         "facebook": "https://warpcast.com/Oxkingtyx",
         "website": "https://tiktok.com/@Olivateazzy",
+        "walletAddress": "0x6dfF0c13d9e56a0F621173A889e04e11D543c976",
         "featured": "yes",
         "tiers": [
           {
@@ -59,6 +60,7 @@
     "instagram": "https://instagram.com/John_Lyyor_King",
     "facebook": "https://warpcast.com/John_Lyyor_King",
     "website": "https://tiktok.com/@John_Lyyor_King",
+    "walletAddress": "0x6dfF0c13d9e56a0F621173A889e04e11D543c976",
       "featured": "yes",
       "tiers": [
         {
@@ -105,7 +107,8 @@
       "twitter": "https://x.com/Undgdkngs",
     "instagram": "https://instagram.com/Undgdkngs",
     "facebook": "https://warpcast.com/Undgdkngs",
-      "featured": "yes",
+      "walletAddress": "0x6dfF0c13d9e56a0F621173A889e04e11D543c976",
+        "featured": "yes",
       "tiers": [
         {
           "id": 1,

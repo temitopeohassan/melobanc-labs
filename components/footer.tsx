@@ -55,6 +55,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/#" className="text-muted-foreground hover:text-primary">
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link href="/#" className="text-muted-foreground hover:text-primary">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="text-muted-foreground hover:text-primary">
                   Contact Us
                 </Link>
