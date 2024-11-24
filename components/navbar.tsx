@@ -69,7 +69,7 @@ export default function Navbar() {
               className="bg-foreground text-background hover:bg-foreground/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
             >
               <Avatar className="h-6 w-6" />
-              <Name />
+              <Name className={theme === 'light' ? 'text-white' : 'text-black'} />
             </ConnectWallet>
             <WalletDropdown>
               <Identity 
