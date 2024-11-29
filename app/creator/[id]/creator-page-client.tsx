@@ -99,7 +99,7 @@ export default function CreatorPageClient({ creator }: { creator: Creator }) {
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative w-24 h-24">
                   <Image
-                    src={`/${creator.image}`}
+                    src={creator.image}
                     alt={creator.name}
                     fill
                     className="object-cover rounded-full"

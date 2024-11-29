@@ -18,7 +18,7 @@ export default function Home() {
             Join millions of others in supporting creators and getting exclusive access to their work
           </p>
           <div className="flex justify-center gap-4">
-            <Link href="/#">
+            <Link href="/creators">
               <Button size="lg" className="gap-2">
                 Explore Creators <ArrowRight className="w-4 h-4" />
               </Button>

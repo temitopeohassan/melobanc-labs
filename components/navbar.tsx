@@ -53,7 +53,7 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4 flex-1">
           <nav className="flex items-center space-x-4 mx-6">
-            <Link href="/#" className="text-sm font-medium">
+            <Link href="/creators" className="text-sm font-medium">
               Explore
             </Link>
             <Link href="/#" className="text-sm font-medium">
