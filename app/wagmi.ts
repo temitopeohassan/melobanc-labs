@@ -1,13 +1,13 @@
 import { http, cookieStorage, createConfig, createStorage } from 'wagmi';
-import { base } from 'wagmi/chains'; // add baseSepolia for testing
+import { base, baseSepolia } from 'wagmi/chains';
 import { coinbaseWallet } from 'wagmi/connectors';
  
 export function getConfig() {
   return createConfig({
-    chains: [base], // add baseSepolia for testing
+    chains: [base, baseSepolia],
     connectors: [
       coinbaseWallet({
-        appName: "OnchainKit",
+        appName: "Melobanc Labs",
         preference: 'all',
         version: '4',
       }),
@@ -17,7 +17,8 @@ export function getConfig() {
     }),
     ssr: true,
     transports: {
-      [base.id]: http(), // add baseSepolia for testing
+      [base.id]: http(),
+      [baseSepolia.id]: http(),
     },
   });
 }
